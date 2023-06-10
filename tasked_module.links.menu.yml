@@ -1,0 +1,5 @@
+tasked_module.form:
+  title: 'Tasked module settings'
+  description: 'Configure settings for the Tasked Module module.'
+  route_name: tasked_module.form
+  parent: 'system.admin_config_development'

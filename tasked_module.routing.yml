@@ -1,0 +1,14 @@
+tasked_module.generate:
+  path: '/tasked_module/generate/{paragraphs}/{phrases}'
+  defaults:
+    _controller: '\Drupal\tasked_module\Controller\Tasked_moduleController::generate'
+  requirements:
+    _permission: 'generate some string'
+
+tasked_module.form:
+  path: '/admin/config/development/tasked_module'
+  defaults:
+    _form: '\Drupal\tasked_module\Form\tasked_moduleForm'
+    _title: 'Tasked module settings'
+  requirements:
+    _permission: 'administer site configuration'
