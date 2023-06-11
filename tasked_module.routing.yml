@@ -8,7 +8,7 @@ tasked_module.generate:
 tasked_module.form:
   path: '/admin/config/development/tasked_module'
   defaults:
-    _form: '\Drupal\tasked_module\Form\tasked_moduleForm'
+    _form: '\Drupal\tasked_module\Form\tasked_moduleBlockForm'
     _title: 'Tasked module settings'
   requirements:
     _permission: 'administer site configuration'

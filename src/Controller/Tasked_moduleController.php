@@ -55,7 +55,7 @@ class Tasked_moduleController {
     $element['#title'] = Html::escape($page_title);
      
     // Theme function.
-    $element['#theme'] = 'task_module';
+    $element['#theme'] = 'tasked_module';
     
     return $element;
  }
