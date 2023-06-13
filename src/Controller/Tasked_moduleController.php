@@ -59,4 +59,22 @@ class Tasked_moduleController {
     
     return $element;
  }
+
+  function tasked_module_entity_presave(EntityInterface $entity) {
+    if ($entity->getEntityTypeId() === 'tasked_employee') {
+      $dob = $entity->get('field_date_of_birth')->value;
+      $age = calculate_age($dob);
+      $entity->set('field_employee_age', $age);
+    }
+  }
+
+/**
+ * Helper function to calculate age based on DOB.
+ */
+  function calculate_age($dob) {
+    $diff = date_diff(date_create($dob), date_create());
+    $age = $diff->y;
+    
+    return $age;
+  }
 }

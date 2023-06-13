@@ -11,7 +11,62 @@ use Drupal\user\RoleInterface;
  * Implements hook_install().
  */
 function tasked_module_install() {
+  // $module = 'tasked_module';
+  // $database = \Drupal::database();
+  // $schema_handler = $database->schema();
+  // $schema = tasked_module_get_schema();
+  // if (!$schema_handler->tableExists('tasked_module_employee')) {
+  //   $schema_handler->createTable('tasked_module_employee', $schema['tasked_module_employee']);
+  // }
   user_role_change_permissions(RoleInterface::ANONYMOUS_ID, array(
     'generate some string' => TRUE,
   ));
 }
+
+function tasked_module_get_schema() {
+  $schema['tasked_module_employee'] = [
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique ID for the employee.',
+      ],
+      'name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'Name of the employee.',
+      ],
+      'age' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'Age of the employee.',
+      ],
+      'sex' => [
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'description' => 'Sex of the employee.',
+      ],
+      'dob' => [
+        'type' => 'datetime',
+        'not null' => TRUE,
+        'description' => 'Date of birth of the employee.',
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+// function tasked_module_uninstall() {
+//   $database = \Drupal::database();
+//   $schema_handler = $database->schema();
+//   if($schema_handler->tableExists('tasked_module_employee')){
+//     $schema_handler->dropTable('tasked_module_employee');
+//   }
+// }

@@ -22,7 +22,7 @@ class tasked_moduleBlock extends BlockBase {
      */
     public function build() {
     // Return the form @ Form/tasked_moduleForm.php.
-    return \Drupal::formBuilder()->getForm('Drupal\tasked_module\Form\tasked_moduleBlockForm');
+        return \Drupal::formBuilder()->getForm('Drupal\tasked_module\Form\tasked_moduleBlockForm');
     }
     /**
      * {@inheritdoc}

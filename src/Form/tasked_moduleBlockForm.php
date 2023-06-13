@@ -14,6 +14,20 @@ class tasked_moduleBlockForm extends FormBase {
   /**
    * {@inheritdoc}
    */
+
+  protected $database;
+
+  // public function __construct(Connection $database){
+  //   $this->database = $database;
+  // }
+
+  // public static function create(ContainerInterface $container) {
+  //   return new static(
+  //     $container->get('database')
+  //   );
+  // }
+
+  
   public function getFormId() {
     return 'tasked_module_block_form';
   }
@@ -41,7 +55,38 @@ class tasked_moduleBlockForm extends FormBase {
       '#description' => $this->t('Maximum per paragraph'),
     ];
 
-    // Submit.
+    $date = '2008-12-31 00:00:00';
+
+    $format = 'Y-m-d H:i';
+ 
+
+    $form['employee_name'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Name'),
+      '#description' => $this->t('Employee Name'),
+    ]; 
+
+    $form['employee_age'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Age'),
+      '#description' => $this->t('Employee Age'),
+    ]; 
+
+    $form['employee_name'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Name'),
+      '#description' => $this->t('Employee Name'),
+    ];
+    
+    $form['employee_dob'] = array(
+      '#type' => 'datetime', 
+      '#title' => $this->t('DOB'),
+      '#default_value' => $date, 
+      '#date_format' => $format,
+      '#description' => $this->t('date picker')
+    );
+
+    // Submit. 
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Generate'),
@@ -71,6 +116,9 @@ class tasked_moduleBlockForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    // $employee_name = $form_state->getValue('employee_name');
+    // $employee_age = $form_state->getValue('employee_age');
+    // $employee_dob = $form_state->getValue('employee_dob');
     $form_state->setRedirect('tasked_module.generate', [
       'paragraphs' => $form_state->getValue('paragraphs'),
       'phrases' => $form_state->getValue('phrases'),
@@ -78,3 +126,7 @@ class tasked_moduleBlockForm extends FormBase {
   }
 
 }
+
+// <script>
+//   alert("presave trigger");
+// </script>

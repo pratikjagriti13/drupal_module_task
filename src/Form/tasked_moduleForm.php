@@ -26,12 +26,13 @@ class tasked_moduleForm extends ConfigFormBase {
         '#description' => $this->t('Give your string generator page a title.'),
       ];
       // Source text field.
-      $form['source_text'] = [
-        '#type' => 'textarea',
-        '#title' => $this->t('Source text for string generation:'),
-        '#default_value' => $config->get('tasked_module .source_text'),
-        '#description' => $this->t('Write one sentence per line. Those sentences will be used to generate random text.'),
-      ];
+    $form['source_text'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Source text for string generation:'),
+      '#default_value' => $config->get('tasked_module.source_text'),
+      '#description' => $this->t('Write one sentence per line. Those sentences will be used to generate random text.'),
+    ];
+
   
       return $form;
     }

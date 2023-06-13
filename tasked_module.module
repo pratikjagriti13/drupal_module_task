@@ -44,3 +44,25 @@ function template_preprocess_tasked_module(&$variables) {
     $variables['source_text'][$i] = implode('', $big_text);
   }
 }
+
+function tasked_module_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  if( $entity->bundle() === 'employee'){
+    $value = $entity->get('field_dob')->value;
+    $value = explode('-', $value);
+    $value = array_map('\intval', $value);
+    $current_date = \Date('Y-m-d');
+    $current_year = explode('-', $current_date);
+    $current_year = array_map('\intval', $current_year);
+    // $current_year = \strlen('2023');
+    $age = $current_year[0] - $value[0];
+    if($current_year[1] > $value[1]){
+      --$age;
+    }
+    elseif( $current_year[1] === $value[1]){
+      if($current_year[2]>$value[2]){
+        --$age;
+      }
+    }
+    $entity->set('field_age', $age);
+  }
+}
